@@ -1,20 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import telebot
-from telebot import types
-import argparse
+import telebot, argparse, random
+from telebot import types, apihelper
 
+# API key телеграмовского бота
+bot = telebot.TeleBot('-')
 
-bot = telebot.TeleBot("-")
+# список прокси серверов
+list_proxy = ('antimalware:eL2S5JbU@148.251.151.141:1080', )
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-m', dest='message', default='Я родился!', help="Сообщение, которое будет отправлено в чат")
-parser.add_argument('-vm', dest='videomessage', default='false.mp4', help="Видео (true & false), которое будет отправлено в чат")
-parser.add_argument('-id', dest='chat_id', default='121860960', help="id телеграма чата куда будет отправлено сообщение")
-
+parser.add_argument('-w', dest='state', default='false', help="Успех или провал отображаем")
+parser.add_argument('-id', dest='chat_id', default='-', help="id телеграма чата куда будет отправлено сообщение")
 args = parser.parse_args()
 
+if args.state == 'true':
+    sti = open("true.webp", 'rb')
+elif args.state == 'false':
+    sti = open("false.webp", 'rb')
 
-bot.send_message(args.chat_id, args.message)
-bot.send_video(args.chat_id, open(args.videomessage, 'rb'))
+all_ok = None
+while all_ok != 'ok':
+    try:
+        apihelper.proxy = {'https':'socks5://' + random.choice(list_proxy)}
+        bot.send_sticker(args.chat_id, sti)
+        all_ok = "ok"
+    except Exception as e:
+        pass
+
+# запускается с параметрами:
+# ./telegram_sendvideo.py -id 'id chat or user' -w "true\false"

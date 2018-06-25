@@ -8,7 +8,12 @@ from telebot import types, apihelper
 bot = telebot.TeleBot('-')
 
 # список прокси серверов
-list_proxy = ('antimalware:eL2S5JbU@148.251.151.141:1080', )
+list_proxy = ('antimalware:eL2S5JbU@148.251.151.141:1080', '121860960:FO8qJhxT@phobos.public.opennetwork.cc:1090', '121860960:FO8qJhxT@deimos.public.opennetwork.cc:1090', 'userid00wa:ZY1iTEi4@185.36.191.39:6398')
+# import urllib.request
+# url = 'http://proxy_list.py'
+# urllib.request.urlretrieve(url, './proxy_list.py')
+# import proxy_list
+# list_proxy = proxy_list.list_proxy
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-m', dest='message', default='Я родился!', help="Сообщение, которое будет отправлено в чат")

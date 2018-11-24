@@ -115,7 +115,7 @@ def generate_list(file_with_version):
 # выкачать страницу
 def get_page_json(page_id, expand=False):
     if expand:
-        suffix = "?expand=" + expand
+        suffix = f"?expand={expand}"
     else:
         suffix = ""
     url = conf_url + page_id + suffix
@@ -255,7 +255,7 @@ def get_url_repo(application):
         git_repo = 'PENTAHO/pentahoLanguagePacks'
     elif application == 'pentaho_plugins':
         git_repo = 'PENTAHO/pentaho-plugins'
-    git_url = 'http://git.gistek.lanit.ru/' + git_repo + '/blob/release/CHANGELOG.md#'
+    git_url = f'http://git.gistek.lanit.ru/{git_repo}/blob/release/CHANGELOG.md#'
 
 
 def use_node_script():
@@ -268,15 +268,14 @@ def use_node_script():
             get_url_repo(component)
             # print('node parse.js --html=table.html --target=' + stand + ' --component=' + component
                       # + ' --new-version=' + version + ' --new-version-link=' + git_url + version)
-            if 'PostgreSQL' in second_i or 'Java' in second_i or 'Tomcat' in second_i or "Liferay" in second_i \
-                    or 'PHP' in second_i or 'Apache' in second_i or 'Pentaho' in second_i or 'SpatialDB' in second_i \
-                    or 'GISWebServiceSE' in second_i or 'GISAdministratorSE' in second_i or 'WSO' in second_i \
-                    or 'ActiveMQ' in second_i:
-                os.system('node parse.js --html=table.html --target=' + stand + ' --component=' + component
-                      + ' --new-version=' + version + ' --new-version-link=' + git_url + version + ' --no-version=true')
+            app_without_version = {'PostgreSQL', 'Java', 'Tomcat', "Liferay", 'PHP', 'Apache', 'Pentaho', 'SpatialDB',
+                                   'GISWebServiceSE', 'GISAdministratorSE', 'WSO', 'ActiveMQ'}
+            if [x for x in app_without_version if x in second_i] == True:
+                os.system(f'node parse.js --html=table.html --target={stand} --component={component}'
+                          f' --new-version={version} --new-version-link={git_url}{version} --no-version=true')
             else:
-                os.system('node parse.js --html=table.html --target=' + stand + ' --component=' + component
-                      + ' --new-version=' + version + ' --new-version-link=' + git_url + version)
+                os.system(f'node parse.js --html=table.html --target={stand} --component={component}'
+                          f' --new-version={version} --new-version-link={git_url}{version}')
     file_table = open('table.html', 'r')
     final_json = file_table.read().strip()
     file_table.close()

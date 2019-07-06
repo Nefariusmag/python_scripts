@@ -1,11 +1,15 @@
-python_scripts
+# python_scripts
 
 Сам репозиторий как шпора по питону.
-# sqlite_sqlalchemy
+
+## calculate_ip_pull
+ринимает аргументы со списком ip и вытаскивает первый и последний, чтобы вычислить ip pull
+
+## sqlite_sqlalchemy
 взять id и имя юзера телеграма и положить в базу данных sqlite
 используется ORM SQL Alchemy
 
-# db_backup
+## db_backup
 передача аргументов
 архивирование tag.gz
 снятие дампов
@@ -18,7 +22,7 @@ python_scripts
 оповещение через телеграм
 многопоточность
 
-# migrate_version_to_table
+## migrate_version_to_table
 брать переменные из переменных сред
 генерация словаря
 разделение переменной по нужному символу
@@ -27,29 +31,29 @@ python_scripts
 выкачивание json страницы из confluence
 загрузка файла страницы в confluence
 
-# checksum
+## checksum
 поиск файлов нужного типа в нужной папке
 переменная даты и времени
 вычисление чексумы записывая в файл
 многопоточность
 
-# telegram_sendvideo / telegram_message
+## telegram_sendvideo / telegram_message
 передача аргументов
 оповещение через телеграм
 проксирование
 обработка исключений
 рандомный выбор
 
-# postgres_rename_db_value
+## postgres_rename_db_value
 использование psycopg2 для работы с PostgreSQL
 
-# update_wiki_redmine
+## update_wiki_redmine
 словари
 создания списка
 брать переменные из переменных сред
 отправка линка для изменения страницы в редмайне
 
-# update_servers / trash_migrate_db_postgres
+## update_servers / trash_migrate_db_postgres
 словари
 получение переменных из консоли
 выполенние команд системных

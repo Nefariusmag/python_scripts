@@ -1,6 +1,9 @@
 python_scripts
 
 Сам репозиторий как шпора по питону.
+# sqlite_sqlalchemy
+взять id и имя юзера телеграма и положить в базу данных sqlite
+используется ORM SQL Alchemy
 
 # db_backup
 передача аргументов
